@@ -1,8 +1,9 @@
-#include <iostream>
+#import <iostream> 
 
 int main(){
-  int a, b;
-	std :: cin >> a >> b;
-  std :: cout << a + b << std :: endl;
-	return 0;
+    std::ios_base::sync_with_stdio(false);
+    int a, b;
+    std::cin >> a >> b;
+    std::cout << a + b << "\n";
+    return 0;
 }
