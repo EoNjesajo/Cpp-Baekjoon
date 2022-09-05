@@ -1,7 +1,9 @@
-#include <iostream>
+#include<iostream> 
 
-int main() {
-  int a, b;
-  std::cin>>a>>b;
-  std::cout<<a-b<<std::endl;
+int main(){
+    std::ios_base::sync_with_stdio(false);
+    int a, b;
+    std::cin >> a >> b;
+    std::cout << a - b << "\n";
+    return 0;
 }
