@@ -1,38 +1,34 @@
-#include <iostream>
-#include <algorithm>
+#include<iostream>
+#include<algorithm>
+#include<string>
+#include<vector>
 
 int main(){
     std::ios_base::sync_with_stdio(false);
     std::string a, b;
+    int carry = 0;
+    std::vector<int> result;
     std::cin >> a >> b;
-
-    if (b.length() > a.length()) {
+    if(b.length() > a.length()){
         std::swap(a, b);
     }
-    std::string tmp = "";
-    if (a.length() != b.length()){
-        for (int i=0; i<(a.length()-b.length()); i++)
-            tmp += "0";
-    }
-    b = tmp+b;
+    std::reverse(a.begin(), a.end());
+    std::reverse(b.begin(), b.end());
 
-    std::string result = "";
-    int carry = 0; 
-    int x, y, digit;
-    for (int i=a.length()-1; i>=0; i--){
-        x = a[i] - '0';
-        y = b[i] - '0';
-        digit = x + y;
-        if (carry == 1) {
-            digit++;
-            carry = 0;
-        }
-        if (digit > 9) 
-            carry = 1;
-        result += digit%10 + '0'; 
-    }
+    for(int i=0; i<b.length(); i++){
+        int sum = (a[i]-'0') + (b[i]-'0') + carry;
 
-    for (int i=result.length() - 1; i>=0; i--){
-        std::cout << result[i];
+        result.insert(result.begin(), sum%10);
+        carry = sum/10;
     }
+    for(int j=b.length(); j<a.length(); j++){
+        int sum = (a[j]-'0') + carry;
+
+        result.insert(result.begin(), sum%10);
+        carry = sum/10;
+    }
+    if(carry!=0) result.insert(result.begin(),carry);
+
+    for(auto ele : result)
+        std::cout << ele;
 }
